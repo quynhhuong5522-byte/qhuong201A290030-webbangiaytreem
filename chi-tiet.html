@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi tiết sản phẩm - HUM HUM Shop</title>
+  <!-- Google Font Nunito & Icon FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --pink-main: #FF80AB;
+      --pink-hover: #ff5252;
+      --orange-accent: #FFA726;
+      --bg-light: #FAFAFA;
+      --text-color: #333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Nunito', sans-serif; }
+    body { background-color: var(--bg-light); color: var(--text-color); }
+
+    /* Header */
+    header {
+      background: white;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink-main); text-decoration: none; }
+    nav a { margin: 0 15px; text-decoration: none; color: #555; font-weight: 600; }
+    nav a:hover { color: var(--pink-main); }
+    .cart-btn { background: var(--pink-main); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: bold; }
+
+    /* Layout Chi tiết sản phẩm */
+    .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .breadcrumb { margin-bottom: 20px; color: #777; font-size: 0.9rem; }
+    .breadcrumb a { color: var(--pink-main); text-decoration: none; }
+
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* Khung ảnh */
+    .product-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    /* Thông tin sản phẩm */
+    .product-info h1 { font-size: 2rem; color: #222; margin-bottom: 10px; }
+    .product-price { font-size: 1.8rem; color: var(--pink-main); font-weight: 800; margin-bottom: 20px; }
+    
+    .section-title { font-weight: 700; margin: 15px 0 8px; color: #444; }
+    
+    /* Chọn Size */
+    .size-picker { display: flex; gap: 10px; margin-bottom: 20px; }
+    .size-btn {
+      padding: 8px 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .size-btn:hover, .size-btn.active {
+      border-color: var(--pink-main);
+      color: var(--pink-main);
+      background: #fff0f5;
+    }
+
+    /* Số lượng & Nút Mua */
+    .action-group { display: flex; gap: 15px; align-items: center; margin: 25px 0; }
+    .quantity-input {
+      width: 60px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .add-btn {
+      flex: 1;
+      background: var(--orange-accent);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .add-btn:hover { background: #f57c00; transform: translateY(-2px); }
+
+    /* Khung Mô tả chi tiết */
+    .description-box {
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+    .description-box p { color: #555; line-height: 1.6; margin-bottom: 10px; }
+    .description-box ul { padding-left: 20px; color: #555; line-height: 1.8; }
+
+    /* Footer */
+    footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 50px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">HUM HUM</a>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="giay-be-trai.html">Giày Bé Trai</a>
+      <a href="giay-be-gai.html">Giày Bé Gái</a>
+    </nav>
+    <a href="#" class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span id="cart-count">0</span>)</a>
+  </header>
+
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> / Sneaker HumHum Pastel Pink
+    </div>
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c1.jpg" alt="Giày Sneaker HumHum">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Sneaker HumHum Pastel</h1>
+        <div class="product-price">350.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách ngọt ngào, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- NỘI DUNG CHI TIẾT SẢN PHẨM -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-trai.html">Giày Bé Trai</a> / Giày lười cam vàng
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c2.jpg" alt="Giày lười cam vàng">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày lười cam vàng</h1>
+        <div class="product-price">290.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách năng động, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c3-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Giày thể thao tím hoa trắng
+    </div>
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c3.jpg" alt="Giày thể thao tím hoa trắng">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày thể thao tím hoa trắng</h1>
+        <div class="product-price">380.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu sneaker phong cách Chunky thời trang dành cho bé gái với phối màu tím pastel ngọt ngào, kết hợp công nghệ nút xoay tự động tiện lợi giúp bé dễ dàng tự mang giày mà không cần buộc dây.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Khóa nút xoay thông minh: Thay thế hoàn toàn dây buộc truyền thống. Bé chỉ cần ấn & xoay để ôm sát chân, hoặc kéo nhẹ nút lên để nới lỏng. Rất tiện lợi, giúp bé tự lập hơn khi đi học, đi chơi.</li>
+            <li><strong>Đế giày:</strong> Thân giày làm từ vải lưới thể thao cao cấp phối da PU mềm, vừa tạo độ form chuẩn vừa giúp đôi chân luôn khô thoáng, không lo bí bách suốt ngày dài.</li>
+            <li><strong>Khóa dán:</strong>Bộ đế EVA siêu nhẹ thiết kế dạng sóng nước độc đáo, có khả năng giảm xóc tốt, nâng đỡ đôi chân năng động và hạn chế trơn trượt hiệu quả.</li>
+            <li><strong>Phù hợp:</strong> Tông màu Tím Lavender chủ đạo điểm xuyết ánh ngọc trai/loang màu pastel cá tính, dễ dàng kết hợp với quần jeans, chân váy hay đồ thể thao.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c4-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Sandal đi học quai ngang pastel
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c4.jpg" alt="Sandal đi học quai ngang pastel">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Sandal đi học quai ngang pastel</h1>
+        <div class="product-price">250.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu sandal dép rọ/quai ngang phong cách Hàn Quốc cực kỳ thời trang và êm ái dành cho các bé. Thiết kế quai trần bông chần chỉ tinh tế kết hợp đế bánh mì chống trượt, mang lại vẻ ngoài vừa dễ thương vừa cá tính cho bé khi đi học, đi chơi..</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Quai dép được may họa tiết chần chỉ hình quả trám nổi bật tạo cảm giác mềm mại và cao cấp.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c5-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Giày búp bê đi chơi đính nơ
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c5.jpg" alt="Búp Bê">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày búp bê đi chơi đính nơ</h1>
+        <div class="product-price">320.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày búp bê Mary Jane mang phong cách cổ điển (Vintage) ngọt ngào dành riêng cho các công chúa nhỏ.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Bề mặt da PU cao cấp bóng nhẹ, chống bám bẩn tốt, cực kỳ dễ lau chùi. Lớp lót bên trong êm ái, hạn chế tối đa việc làm trầy xước gót chân bé.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c6-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Giày tập đi đế mềm Humhum Baby
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c6.jpg" alt="Giày tập đi đế mềm Humhum Baby">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày tập đi đế mềm Humhum Baby</h1>
+        <div class="product-price">220.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách ngọt ngào, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c7-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-trai.html">Giày Bé Trai</a> /Giày chạy bộ năng động bé trai
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c7.jpg" alt="Giày chạy bộ năng động bé trai">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày chạy bộ năng động bé trai</h1>
+        <div class="product-price">360.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu sneaker thể thao phong cách Dynamic & Trendy dành cho các bé vận động năng động. Với phối màu nổi bật, chất liệu thoáng khí cùng thiết kế tiện lợi.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> hân giày làm từ chất liệu dệt lưới cao cấp, giúp đôi chân bé luôn khô thoáng, hạn chế hôi chân và bí bách dù vận động cả ngày dài.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c8-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Giày Sneaker cổ cao phong cách Hàn Quốc
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c8.jpg" alt="Giày Sneaker cổ cao phong cách Hàn Quốc">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày Sneaker cổ cao phong cách Hàn Quốc</h1>
+        <div class="product-price">410.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách ngọt ngào, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c9-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Dép lê khủng long đáng yêu
+
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c9.jpg" alt="Dép lê khủng long đáng yêu">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Dép lê khủng long đáng yêu</h1>
+        <div class="product-price">180.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu dép lê quai ngang họa tiết Khủng Long 3D cực kỳ ngộ nghĩnh với tông màu xanh tươi mát, thu hút các bé ngay từ cái nhìn đầu tiên.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Siêu nhẹ, dẻo dai và không thấm nước. Dép rất dễ lau chùi, nhanh khô và không lo bị bong tróc keo hay biến dạng trong quá trình sử dụng.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong>Không sử dụng</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c10-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-trai.html">Giày Bé Trai</a> /Giày lười da mềm bé trai
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c10.jpg" alt="Giày lười da mềm bé trai">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày lười da mềm bé trai</h1>
+        <div class="product-price">390.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>mô tả sản phẩm</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Bề mặt da PU mềm mại, ôm chân nhẹ nhàng, có độ bền cao và cực kỳ dễ dàng lau chùi khi bám bẩn.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c11-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Giày công chúa lấp lánh dễ thương
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c11.jpg" alt="Giày công chúa lấp lánh dễ thương">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Giày công chúa lấp lánh dễ thương</h1>
+        <div class="product-price">340.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách ngọt ngào, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NỘI DUNG CHI TIẾT SẢN PHẨM c12-->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a> / <a href="giay-be-gai.html">Giày Bé Gái</a> /Sandal hoa cúc pastel mùa hè
+    <div class="product-detail-layout">
+      <!-- Cột trái: Ảnh sản phẩm -->
+      <div class="product-image">
+        <img src="images/c12.jpg" alt="Sandal hoa cúc pastel mùa hè">
+      </div>
+
+      <!-- Cột phải: Thông tin & Mua hàng -->
+      <div class="product-info">
+        <h1>Sandal hoa cúc pastel mùa hè</h1>
+        <div class="product-price">270.000đ</div>
+
+        <div class="section-title">Kích cỡ (Size):</div>
+        <div class="size-picker">
+          <button class="size-btn">23</button>
+          <button class="size-btn active">24</button>
+          <button class="size-btn">25</button>
+          <button class="size-btn">26</button>
+          <button class="size-btn">27</button>
+        </div>
+
+        <div class="action-group">
+          <input type="number" value="1" min="1" class="quantity-input">
+          <button class="add-btn" onclick="addToCart()"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Khung Mô Tả -->
+        <div class="description-box">
+          <div class="section-title">Mô tả sản phẩm:</div>
+          <p>Mẫu giày Sneaker HumHum Pastel mang phong cách ngọt ngào, siêu nhẹ, tạo cảm giác êm ái tối đa cho bé khi di chuyển và vận động cả ngày dài.</p>
+          
+          <div class="section-title">Đặc điểm nổi bật:</div>
+          <ul>
+            <li><strong>Chất liệu:</strong> Vải dệt cao cấp thoáng khí, không gây hầm bí chân.</li>
+            <li><strong>Đế giày:</strong> Cao su non siêu nhẹ, có rãnh chống trơn trượt an toàn.</li>
+            <li><strong>Khóa dán:</strong> Quai dán Velco tiện lợi, giúp bé tự mang và tháo dễ dàng.</li>
+            <li><strong>Phù hợp:</strong> Bé đi học, đi chơi, tham gia các hoạt động thể thao ngoài trời.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 HUM HUM Shop - Giày dép thời trang trẻ em</p>
+  </footer>
+
+  <script>
+    let count = 0;
+    function addToCart() {
+      count++;
+      document.getElementById('cart-count').innerText = count;
+      alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
+    }
+  </script>
+</body>
+</html>
